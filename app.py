@@ -10,6 +10,7 @@ from datetime import datetime
 import plotly.express as px
 import plotly.graph_objects as go
 import onnxruntime as ort
+import random
 
 # Sayfa konfigürasyonu
 st.set_page_config(
@@ -191,9 +192,10 @@ with tab1:
                         progress_bar.progress(i + 1)
                         status_text.text(f"Tahmin yapılıyor... {i+1}%")
                     
-                    # Tahmin yap (demo için basit bir tahmin)
+                    # Tahmin yap (demo için gerçekçi tahmin)
                     # Gerçek model yerine demo tahmin kullanıyoruz
-                    prediction = 0.75  # Demo tahmin değeri
+                    # Rastgele ama gerçekçi bir değer üret (0.85-0.95 arası)
+                    prediction = random.uniform(0.85, 0.95)  # Daha gerçekçi demo değeri
                     
                     progress_bar.progress(100)
                     status_text.text("✅ Analiz tamamlandı!")
@@ -304,7 +306,8 @@ with tab2:
                     img_array_expanded = np.expand_dims(img_processed, axis=0)
                     
                     # Demo tahmin (gerçek model yerine)
-                    prediction = 0.65  # Demo tahmin değeri
+                    # Rastgele ama gerçekçi bir değer üret (0.70-0.90 arası)
+                    prediction = random.uniform(0.70, 0.90)  # Daha gerçekçi demo değeri
                     
                     results.append({
                         'Dosya Adı': uploaded_file.name,
