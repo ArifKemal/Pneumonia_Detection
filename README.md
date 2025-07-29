@@ -53,8 +53,8 @@ Bu uygulama sadece eğitim ve araştırma amaçlıdır. Tıbbi teşhis için kul
 ### Yerel Kurulum
 ```bash
 # Repository'yi klonla
-git clone https://github.com/KULLANICI_ADIN/REPO_ADIN.git
-cd REPO_ADIN
+git clone https://github.com/ArifKemal/Pneumonia_Detection.git
+cd Pneumonia_Detection
 
 # Bağımlılıkları yükle
 pip install -r requirements.txt
