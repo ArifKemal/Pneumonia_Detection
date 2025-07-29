@@ -45,10 +45,6 @@ Bu uygulama sadece eğitim ve araştırma amaçlıdır. Tıbbi teşhis için kul
 git clone https://github.com/ArifKemal/Pneumonia_Detection.git
 cd Pneumonia_Detection
 
-
-=======
-  
->>>>>>> 2788841e03d512162b1c0bb8b0eef982af6a2c9f
 # Bağımlılıkları yükle
 pip install -r requirements.txt
 
