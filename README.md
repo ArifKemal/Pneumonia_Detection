@@ -44,7 +44,7 @@ Bu uygulama sadece eğitim ve araştırma amaçlıdır. Tıbbi teşhis için kul
 # Repository'yi klonla
 git clone https://github.com/ArifKemal/Pneumonia_Detection.git
 cd Pneumonia_Detection
-<<<<<<< HEAD
+
 
 =======
   
