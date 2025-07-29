@@ -1,14 +1,3 @@
----
-title: Zatürre Teşhis Modeli
-emoji: 🫁
-colorFrom: blue
-colorTo: red
-sdk: docker
-sdk_version: 20.10.23
-app_file: app.py
-pinned: false
----
-
 # Zatürre Teşhis Modeli
 
 Bu uygulama, göğüs röntgeni görüntülerini analiz ederek zatürre olup olmadığını tahmin eden bir derin öğrenme modelidir.
