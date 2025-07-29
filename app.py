@@ -175,7 +175,7 @@ with tab1:
                     original_width, original_height = image.size
                     
                     # Görüntüyü göster
-                    st.image(image, caption=f'Yüklenen Görüntü ({original_width}x{original_height})', use_column_width=True)
+                    st.image(image, caption=f'Yüklenen Görüntü ({original_width}x{original_height})', use_container_width=True)
                     
                     # Tahmin için hazırla
                     img_processed = preprocess_image(image)
