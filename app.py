@@ -1,7 +1,6 @@
 import streamlit as st
 import numpy as np
 from PIL import Image
-import cv2
 import time
 import io
 import base64
@@ -108,7 +107,10 @@ def load_model():
 # Görüntü ön işleme fonksiyonu
 def preprocess_image(image):
     """Görüntüyü model için hazırlar"""
-    return cv2.resize(image, (224, 224)) / 255.0
+    # PIL ile resize
+    resized = image.resize((224, 224))
+    # NumPy array'e çevir ve normalize et
+    return np.array(resized) / 255.0
 
 # Sonuçları indirme fonksiyonu
 def get_download_link(data, filename, text):
@@ -176,8 +178,7 @@ with tab1:
                     st.image(image, caption=f'Yüklenen Görüntü ({original_width}x{original_height})', use_column_width=True)
                     
                     # Tahmin için hazırla
-                    img_array = np.array(image)
-                    img_processed = preprocess_image(img_array)
+                    img_processed = preprocess_image(image)
                     img_array_expanded = np.expand_dims(img_processed, axis=0)
 
                     # Progress bar ile tahmin
@@ -298,8 +299,7 @@ with tab2:
                     status_text.text(f"Analiz ediliyor: {uploaded_file.name} ({i+1}/{len(uploaded_files)})")
                     
                     image = Image.open(uploaded_file).convert('RGB')
-                    img_array = np.array(image)
-                    img_processed = preprocess_image(img_array)
+                    img_processed = preprocess_image(image)
                     img_array_expanded = np.expand_dims(img_processed, axis=0)
                     
                     # Demo tahmin (gerçek model yerine)
