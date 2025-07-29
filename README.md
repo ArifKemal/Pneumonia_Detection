@@ -2,6 +2,8 @@
 
 Bu uygulama, göğüs röntgeni görüntülerini analiz ederek zatürre olup olmadığını tahmin eden bir derin öğrenme modelidir.
 
+[PROJE LİNKİ](https://pneumoniadetectiongit-7czuynxdhocihmdl4kwcwj.streamlit.app/)
+
 ## 🚀 Özellikler
 
 - **Tek Görüntü Analizi**: Tek bir röntgen görüntüsü analizi
