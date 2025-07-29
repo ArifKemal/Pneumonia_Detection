@@ -53,22 +53,15 @@ Bu uygulama sadece eğitim ve araştırma amaçlıdır. Tıbbi teşhis için kul
 ### Yerel Kurulum
 ```bash
 # Repository'yi klonla
-git clone https://github.com/KULLANICI_ADIN/REPO_ADIN.git
-cd REPO_ADIN
-
+git clone https://github.com/ArifKemal/Pneumonia_Detection.git
+cd Pneumonia_Detection
+  
 # Bağımlılıkları yükle
 pip install -r requirements.txt
 
 # Uygulamayı çalıştır
 streamlit run app.py
 ```
-
-### Streamlit Cloud Deploy
-1. Bu repository'yi GitHub'a yükle
-2. [Streamlit Cloud](https://share.streamlit.io/)'a git
-3. GitHub hesabınla giriş yap
-4. "New app" butonuna tıkla
-5. Repository'yi seç ve deploy et
 
 ## 📁 Proje Yapısı
 
@@ -79,26 +72,3 @@ streamlit run app.py
 └── README.md            # Proje dokümantasyonu
 ```
 
-## 🎨 Özellikler
-
-- **Modern UI**: Gradient başlıklar ve animasyonlar
-- **Responsive Design**: Farklı ekran boyutlarına uyum
-- **Dark Theme**: Göz dostu koyu tema
-- **Progress Indicators**: İşlem durumu göstergeleri
-- **Error Handling**: Kapsamlı hata yönetimi
-
-## 📈 Gelecek Geliştirmeler
-
-- [ ] Daha fazla görüntü formatı desteği
-- [ ] Model performans iyileştirmeleri
-- [ ] Mobil uygulama entegrasyonu
-- [ ] API endpoint'leri
-- [ ] Çoklu dil desteği
-
-## 🤝 Katkıda Bulunma
-
-Bu proje eğitim amaçlı geliştirilmiştir. Katkılarınız için teşekkürler!
-
-## 📄 Lisans
-
-Bu proje MIT lisansı altında lisanslanmıştır.
