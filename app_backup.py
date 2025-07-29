@@ -504,4 +504,5 @@ st.markdown("""
     <p>🫁 Zatürre Teşhis Modeli | Derin Öğrenme Projesi</p>
     <p>Bu proje eğitim amaçlı geliştirilmiştir.</p>
 </div>
-""", unsafe_allow_html=True) 
+""", unsafe_allow_html=True)
+
