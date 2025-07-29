@@ -9,8 +9,7 @@ import pandas as pd
 from datetime import datetime
 import plotly.express as px
 import plotly.graph_objects as go
-import onnxruntime as ort
-import random
+import tensorflow as tf
 
 # Sayfa konfigürasyonu
 st.set_page_config(
@@ -99,9 +98,9 @@ st.markdown("""
 @st.cache_resource
 def load_model():
     try:
-        # ONNX modelini yüklüyoruz (eğer varsa)
-        # Şimdilik basit bir demo modeli kullanacağız
-        return "demo_model"
+        # Gerçek Keras modelini yüklüyoruz
+        model = tf.keras.models.load_model('pneumonia_model.keras')
+        return model
     except Exception as e:
         st.error(f"Model yüklenemedi: {e}")
         return None
@@ -124,16 +123,16 @@ def get_download_link(data, filename, text):
 
 # Modeli yükle
 with st.spinner("Model yükleniyor..."):
-    try:
-        model = load_model()
+try:
+    model = load_model()
         if model is not None:
             st.success("✅ Model başarıyla yüklendi!")
         else:
             st.error("❌ Model yüklenemedi!")
             st.stop()
-    except Exception as e:
+except Exception as e:
         st.error(f"❌ Model yüklenirken bir hata oluştu: {e}")
-        st.stop()
+    st.stop()
 
 # Ana başlık
 st.markdown('<h1 class="main-header">🫁 Zatürre Teşhis Modeli</h1>', unsafe_allow_html=True)
@@ -166,20 +165,20 @@ with tab1:
             help="Desteklenen formatlar: JPEG, JPG, PNG"
         )
 
-        if uploaded_file is not None:
+if uploaded_file is not None:
             # Görüntü işleme
-            try:
+    try:
                 with st.spinner("Görüntü analiz ediliyor..."):
                     # Görüntüyü yükle ve göster
-                    image = Image.open(uploaded_file).convert('RGB')
+        image = Image.open(uploaded_file).convert('RGB')
                     
                     # Görüntü boyutlarını al
                     original_width, original_height = image.size
                     
                     # Görüntüyü göster
                     st.image(image, caption=f'Yüklenen Görüntü ({original_width}x{original_height})', use_container_width=True)
-                    
-                    # Tahmin için hazırla
+        
+        # Tahmin için hazırla
                     img_processed = preprocess_image(image)
                     img_array_expanded = np.expand_dims(img_processed, axis=0)
 
@@ -192,10 +191,8 @@ with tab1:
                         progress_bar.progress(i + 1)
                         status_text.text(f"Tahmin yapılıyor... {i+1}%")
                     
-                    # Tahmin yap (demo için gerçekçi tahmin)
-                    # Gerçek model yerine demo tahmin kullanıyoruz
-                    # Rastgele ama gerçekçi bir değer üret (0.85-0.95 arası)
-                    prediction = random.uniform(0.85, 0.95)  # Daha gerçekçi demo değeri
+                    # Gerçek model ile tahmin yap
+                    prediction = model.predict(img_array_expanded, verbose=0)[0][0]
                     
                     progress_bar.progress(100)
                     status_text.text("✅ Analiz tamamlandı!")
@@ -305,9 +302,8 @@ with tab2:
                     img_processed = preprocess_image(image)
                     img_array_expanded = np.expand_dims(img_processed, axis=0)
                     
-                    # Demo tahmin (gerçek model yerine)
-                    # Rastgele ama gerçekçi bir değer üret (0.70-0.90 arası)
-                    prediction = random.uniform(0.70, 0.90)  # Daha gerçekçi demo değeri
+                    # Gerçek model ile tahmin yap
+                    prediction = model.predict(img_array_expanded, verbose=0)[0][0]
                     
                     results.append({
                         'Dosya Adı': uploaded_file.name,
@@ -318,8 +314,8 @@ with tab2:
                     })
                     
                     progress_bar.progress((i + 1) / len(uploaded_files))
-                    
-                except Exception as e:
+
+    except Exception as e:
                     st.error(f"{uploaded_file.name} dosyası işlenirken hata: {e}")
             
             progress_bar.empty()
@@ -458,7 +454,7 @@ with tab4:
         
         # Sistem bilgileri
         st.markdown("#### 💻 Sistem Bilgileri")
-        st.text(f"ONNX Runtime Versiyonu: {ort.__version__}")
+        st.text(f"TensorFlow Versiyonu: {tf.__version__}")
         st.text(f"Streamlit Versiyonu: {st.__version__}")
 
 # Sidebar
