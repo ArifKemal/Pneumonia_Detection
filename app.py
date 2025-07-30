@@ -11,6 +11,10 @@ import plotly.express as px
 import plotly.graph_objects as go
 import tensorflow as tf
 
+# TensorFlow pre-release uyumluluğu için
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+
 # Sayfa konfigürasyonu
 st.set_page_config(
     page_title="Zatürre Teşhis Modeli",
@@ -98,8 +102,8 @@ st.markdown("""
 @st.cache_resource
 def load_model():
     try:
-        # Gerçek Keras modelini yüklüyoruz
-        model = tf.keras.models.load_model('pneumonia_model.keras')
+        # Gerçek Keras modelini yüklüyoruz (pre-release TensorFlow ile)
+        model = tf.keras.models.load_model('pneumonia_model.keras', compile=False)
         return model
     except Exception as e:
         st.error(f"Model yüklenemedi: {e}")
